@@ -3,7 +3,9 @@
 </script>
 
 <template>
+  <div class="item-stats">
 
+  </div>
 </template>
 
 <style scoped>

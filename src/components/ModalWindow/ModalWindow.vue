@@ -27,7 +27,6 @@ const MainStore = useMainStore();
       <ModalHeader :header="MainStore.contentModal?.color"/>
       <ModalBody/>
       <ModalFooter/>
-
     </div>
   </div>
 </template>
@@ -47,8 +46,8 @@ const MainStore = useMainStore();
   right: 50px;
   width: 40%;
   height: calc(100% - 100px);
-  background-color: #262626;
-  border: 1px solid #4D4D4D;
+  background-color: var(--color-background);
+  border: 1px solid var(--main-color);
   border-radius: 12px;
 
   &__content {
@@ -71,5 +70,4 @@ const MainStore = useMainStore();
     height: 30%;
   }
 }
-
 </style>

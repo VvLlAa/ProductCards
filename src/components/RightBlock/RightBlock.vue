@@ -90,8 +90,8 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(77, 77, 77, 1);
-    background-color: #262626;
+    border: 1px solid var(--color-content);
+    background-color: var(--color-background);
     width: 100%;
   }
 
@@ -110,10 +110,10 @@ onMounted(() => {
     right: 0;
     font-size: 16px;
     padding: 10px;
-    border: 1px solid #4D4D4D;
+    border: 1px solid var(--main-color);
     border-top-left-radius: 12px;
-    background-color: #262626;
-    color: #4D4D4D;
+    background-color: var(--color-background);
+    color: var(--main-color);
     font-weight: 600;
   }
 

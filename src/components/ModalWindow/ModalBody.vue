@@ -16,14 +16,14 @@
 <style scoped lang="scss">
 .modal-body {
   flex-grow: 1;
-  border-top: 1px solid #4D4D4D;
-  border-bottom: 1px solid #4D4D4D;
+  border-top: 1px solid var(--main-color);
+  border-bottom: 1px solid var(--main-color);
   margin-top: 40px;
 
   &__header {
     width: 100%;
     height: 50px;
-    background-color: rgba(68, 68, 68, 1);
+    background-color: var(--main-color);
     border-radius: 8px;
     margin-top: 16px;
     margin-bottom: 24px;
@@ -31,10 +31,9 @@
 
   &__text {
     height: 20px;
-    background-color: rgba(68, 68, 68, 1);
+    background-color: var(--main-color);
     border-radius: 8px;
     margin-top: 16px;
   }
 }
-
 </style>

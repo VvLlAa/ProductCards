@@ -7,3 +7,9 @@
 body {
   background-color: #1E1E1E;
 }
+
+:root {
+  --main-color: #4D4D4D;
+  --color-content: rgb(68, 68, 68);
+  --color-background: #262626;
+}
