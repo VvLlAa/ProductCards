@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import {useMainStore} from "@/stores/MainStore.ts";
-import {ref} from "vue";
+import ModalBody from "@/components/ModalWindow/ModalBody.vue";
+import ModalHeader from "@/components/ModalWindow/ModalHeader.vue";
+import ModalFooter from "@/components/ModalWindow/ModalFooter.vue";
 
 const MainStore = useMainStore();
-
-const removeBtn = ref<boolean>(false);
-
-const removeItem = () => {
-  removeBtn.value = !removeBtn.value ;
-};
 </script>
 
 <template>
@@ -28,33 +24,10 @@ const removeItem = () => {
       >
         X
       </div>
-      <div
-          class="modal-window__header"
-          :style="MainStore.contentModal?.color ? { 'background-color': `rgba(${MainStore.contentModal?.color})` } : {}"
-      />
-      <div class="modal-window__body">
-        <div class="modal-window__element"/>
-      </div>
-      <div class="modal-window__footer">
-        <button
-            @click="removeItem"
-            v-if="removeBtn"
-            class="modal-window__remove-btn"
-        >
-          Удалить предмет
-        </button>
-        <div v-else>
-          <input
-              placeholder="Введите количество"
-              type="text"
-              class="modal-window__remove-input"
-          >
-          <div>
-            <button @click="removeItem" class="modal-window__cancellation-btn">Отмена</button>
-            <button class="modal-window__confirm-btn">Подтвердить</button>
-          </div>
-        </div>
-      </div>
+      <ModalHeader :header="MainStore.contentModal?.color"/>
+      <ModalBody/>
+      <ModalFooter/>
+
     </div>
   </div>
 </template>
@@ -78,7 +51,6 @@ const removeItem = () => {
   border: 1px solid #4D4D4D;
   border-radius: 12px;
 
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -87,42 +59,16 @@ const removeItem = () => {
   }
 
   &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     color: #fff;
+    cursor: pointer;
   }
 
   &__header {
     width: 100%;
     height: 30%;
-  }
-
-  &__body {
-    flex-grow: 1;
-    border-top: 1px solid #4D4D4D;
-    border-bottom: 1px solid #4D4D4D;
-  }
-
-  &__footer {
-    margin-top: 16px;
-  }
-
-  &__remove-btn {
-    width: 100%;
-    padding: 20px 0;
-    background-color: #FA7272;
-    border-radius: 8px;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-  }
-
-  &__remove-input {
-    height: 40px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #4D4D4D;
-    background: none;
-    font-size: 16px;
-    color: #fff;
   }
 }
 

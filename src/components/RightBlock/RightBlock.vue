@@ -1,54 +1,67 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {type ListContentType, useMainStore} from "@/stores/MainStore.ts";
+import {onMounted, ref, watch} from "vue";
+import {useMainStore} from "@/stores/MainStore.ts";
 import ModalWindow from "@/components/ModalWindow/ModalWindow.vue";
 
 const MainStore = useMainStore();
-const items = ref<Array<ListContentType>>(Array.from({ length: 25 }, (_, i) => {
-  return  {id: i, quantity: null, color: null}
-}));
 
-const isDragging = ref<boolean>(false);
-const movedItem = ref<ListContentType | number | null>(null);
+const draggedItemIndex = ref<number>(-1);
+
+const saveToLocalStorage = () => {
+  localStorage.setItem("items", JSON.stringify(MainStore.items));
+};
 
 const handleDragStart = (index: number) => {
-  isDragging.value = true;
-  movedItem.value = items.value[index];
+  draggedItemIndex.value = index;
 };
 
 const handleDragEnd = () => {
-  isDragging.value = false;
+  draggedItemIndex.value = -1;
+  saveToLocalStorage();
 };
 
-const handleDragOver = (e: DragEvent, index: number) => {
+const handleDrop = (e: DragEvent, targetIndex: number) => {
   e.preventDefault();
-  if (!isDragging.value) return;
+  if (draggedItemIndex.value === targetIndex) return;
 
-  const newItems = [...items.value];
-  const draggedItem = newItems.findIndex(item => item === movedItem.value);
-  [newItems[draggedItem], newItems[index]] = [newItems[index], newItems[draggedItem]];
-  items.value = newItems;
+  const newItems = [...MainStore.items];
+  [newItems[draggedItemIndex.value], newItems[targetIndex]] =
+      [newItems[targetIndex], newItems[draggedItemIndex.value]];
+
+  MainStore.items = newItems;
 };
+
+const handleDragOver = (e: DragEvent) => {
+  e.preventDefault();
+};
+
+watch(MainStore.items, saveToLocalStorage, { deep: true });
 
 onMounted(() => {
-  MainStore.listContent.forEach((item, index) => {
-    items.value[index] = item;
-  })
+  const local = localStorage.getItem("items");
+  const storedItems = local ? JSON.parse(local) : [];
+  if(storedItems.length > 0) {
+    MainStore.items = storedItems;
+  } else {
+    MainStore.listContent.forEach((item, index) => {
+      MainStore.items[index] = item;
+    })
+  }
 })
 </script>
 
 <template>
   <div class="right-block">
     <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in MainStore.items"
         :key="index"
         class="right-block__item"
         draggable="true"
         @click="MainStore.openModalWindow(item)"
         @dragstart="handleDragStart(index)"
         @dragend="handleDragEnd"
-        @dragover="handleDragOver($event, index)"
-        @drop="handleDragEnd"
+        @dragover="handleDragOver"
+        @drop="handleDrop($event, index)"
     >
       <div
           class="right-block__element"

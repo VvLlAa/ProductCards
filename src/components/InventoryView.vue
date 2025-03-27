@@ -1,9 +1,7 @@
 <script setup lang="ts">
-
 import LeftBlock from "@/components/LeftBlock/LeftBlock.vue";
 import RightBlock from "@/components/RightBlock/RightBlock.vue";
 import FooterBlock from "@/components/FooterBlock/FooterBlock.vue";
-import ModalWindow from "@/components/ModalWindow/ModalWindow.vue";
 </script>
 <template>
   <div class="inventory-view">
