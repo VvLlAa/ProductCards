@@ -7,7 +7,3 @@ import ItemStats from "@/components/LeftBlock/ItemStats.vue";
     <ItemStats/>
   </div>
 </template>
-
-<style scoped>
-
-</style>

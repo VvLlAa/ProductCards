@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import {type ListContentType, useMainStore} from "@/stores/MainStore.ts";
+import {ref, watch} from "vue";
+import Button from "@/components/UI/Button.vue";
 
 const MainStore = useMainStore();
-
-import Button from "@/components/UI/Button.vue";
-import {ref, watch} from "vue";
-
 const removeBtn = ref<boolean>(false);
 const inputValue = ref<string>('');
 
@@ -21,6 +19,7 @@ const removeItem = (num : number) => {
       item.quantity = inputValue.value;
       localStorage.setItem('items', JSON.stringify(storedItems));
       MainStore.items = storedItems;
+      MainStore.isOpenModalWindow = false;
     }
   }
 };
@@ -29,6 +28,12 @@ watch(inputValue, (newValue, oldValue) => {
   const filteredValue = newValue.replace(/\D/g, "");
   if (newValue !== filteredValue) {
     inputValue.value = filteredValue;
+  }
+});
+
+watch(() => MainStore.isOpenModalWindow, (newValue) => {
+  if(newValue){
+    removeBtn.value = false;
   }
 });
 </script>

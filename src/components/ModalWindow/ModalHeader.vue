@@ -10,7 +10,3 @@ const props = defineProps<{
       :style="props.header ? { 'background-color': `rgba(${props.header})` } : {}"
   />
 </template>
-
-<style scoped>
-
-</style>

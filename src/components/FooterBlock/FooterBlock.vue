@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import EmptyContent from "@/components/UI/EmptyContent.vue";
 </script>
 
