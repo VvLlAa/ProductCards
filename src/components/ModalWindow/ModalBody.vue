@@ -1,15 +1,18 @@
 <script setup lang="ts">
 
+import EmptyContent from "@/components/UI/EmptyContent.vue";
 </script>
 
 <template>
   <div class="modal-body">
-    <div class="modal-body__header"/>
-    <div class="modal-body__text"/>
-    <div class="modal-body__text"/>
-    <div class="modal-body__text"/>
-    <div class="modal-body__text"/>
-    <div class="modal-body__text"/>
+    <EmptyContent class="modal-body__title"/>
+    <div class="modal-body__text">
+      <EmptyContent/>
+      <EmptyContent/>
+      <EmptyContent/>
+      <EmptyContent/>
+      <EmptyContent/>
+    </div>
   </div>
 </template>
 
@@ -20,20 +23,15 @@
   border-bottom: 1px solid var(--main-color);
   margin-top: 40px;
 
-  &__header {
-    width: 100%;
+  &__title {
+    margin: 16px 0 24px 0;
     height: 50px;
-    background-color: var(--main-color);
-    border-radius: 8px;
-    margin-top: 16px;
-    margin-bottom: 24px;
   }
 
   &__text {
-    height: 20px;
-    background-color: var(--main-color);
-    border-radius: 8px;
-    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 }
 </style>

@@ -42,10 +42,9 @@ const MainStore = useMainStore();
 .modal-window {
   position: absolute;
   padding: 40px;
-  top: 50px;
-  right: 50px;
+  right: 0;
   width: 40%;
-  height: calc(100% - 100px);
+  height: 100%;
   background-color: var(--color-background);
   border: 1px solid var(--main-color);
   border-radius: 12px;

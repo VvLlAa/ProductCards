@@ -79,7 +79,6 @@ onMounted(() => {
 .right-block {
   position: relative;
   display: grid;
-  padding: 50px;
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(5, 1fr);

@@ -4,10 +4,10 @@ import RightBlock from "@/components/RightBlock/RightBlock.vue";
 import FooterBlock from "@/components/FooterBlock/FooterBlock.vue";
 </script>
 <template>
-  <div class="inventory-view">
+  <div class="inventory-view container">
     <LeftBlock />
     <RightBlock />
-    <FooterBlock />
+    <FooterBlock class="footer-block"/>
   </div>
 </template>
 
@@ -16,10 +16,14 @@ import FooterBlock from "@/components/FooterBlock/FooterBlock.vue";
   display: grid;
   grid-template-columns: 236px 1fr;
   grid-template-rows: 1fr auto;
+  gap: 24px;
   height: 100vh;
+}
 
-  .FooterBlock {
-    grid-column: 1 / span 2;
-  }
+.footer-block {
+  grid-column: 1 / -1;
+  height: 72px;
+  background-color: var(--color-background);
+  border-radius: 12px;
 }
 </style>
